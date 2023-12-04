@@ -1,15 +1,24 @@
 <?php
+
+include("db_connection.php");
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Perform basic validation (you should enhance this)
+
+    // Perform basic validation
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // You should perform proper authentication here (e.g., check against a database)
-    // For simplicity, I'm using hardcoded values
-    $valid_user = ($username == "admin" && $password == "password");
+    // Use prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->bind_result($user_id, $user_name, $hashed_password);
+    $stmt->fetch();
+    $stmt->close();
 
-    if ($valid_user) {
+    // Verify the password
+    if (password_verify($password, $hashed_password)) {
         // Start a session
         session_start();
 

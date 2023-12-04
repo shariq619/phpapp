@@ -113,18 +113,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-
-        <!-- Sidebar user panel (optional) -->
-        
-
-
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">Dashboard</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="user_list.php"><i class="fa fa-link"></i> <span>Users</span></a></li>
-      </ul>
-      <!-- /.sidebar-menu -->
+          <?php include('sidebar.php'); ?>
       </section>
       <!-- /.sidebar -->
     </aside>
