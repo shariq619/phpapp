@@ -41,6 +41,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
+      <?php
+      // Start a session
+      session_start();
+
+
+
+      // Check if there is a login error message
+      if (isset($_SESSION["login_error"])) {
+          echo '<div class="alert alert-danger mt-3">' . $_SESSION["login_error"] . '</div>';
+          unset($_SESSION["login_error"]); // Clear the error message after displaying it
+      }
+      ?>
+
     <form action="login.php" method="post" class="mt-3">
       <div class="form-group has-feedback">
         <input type="text" id="username" name="username" class="form-control" required>
